@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { StatCard } from "@/components/shared/StatCard";
 import { clinic } from "@/lib/constants";
 import { motionPresets } from "@/lib/design-tokens";
+import { hero } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -66,7 +67,7 @@ export function Hero() {
         >
           <Image
             src="/images/hero-clinic.jpg"
-            alt="Friendly dentist consulting with a patient at Meridian Dental"
+            alt="Friendly dentist consulting with a patient at Dentistree Dental Clinic"
             fill
             priority
             className="object-cover"

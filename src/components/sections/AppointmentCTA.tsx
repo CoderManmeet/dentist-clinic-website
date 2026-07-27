@@ -26,7 +26,7 @@ export function AppointmentCTA() {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <Link href="/book-appointment">
-              <Button size="lg" className="w-full sm:w-auto rounded-button bg-white text-secondary hover:bg-white/90 gap-2 h-14 px-8 text-base">
+              <Button size="lg" className="w-full sm:w-auto rounded-button bg-white text-primary hover:bg-white/90 gap-2 h-14 px-8 text-base">
                 <Calendar className="size-5" /> Book Appointment
               </Button>
             </Link>

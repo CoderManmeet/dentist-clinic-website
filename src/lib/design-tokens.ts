@@ -1,15 +1,8 @@
-export const colors = {
-  primary: "#5A8FA8",
-  primaryDark: "#47768C",
-  secondary: "#0F2A3D",
-  accent: "#1F8A70",
-  success: "#4CAF7D",
-  background: "#FAF8F5",
-  surface: "#FFFFFF",
-  text: "#14181C",
-  textMuted: "#6B7280",
-  border: "#E7E2DA",
-} as const;
+import { getTenantConfig } from "./tenants";
+
+const tenant = getTenantConfig();
+
+export const colors = tenant.theme;
 
 export const radius = {
   card: "22px",
@@ -18,9 +11,6 @@ export const radius = {
   image: "24px",
 } as const;
 
-
-
-// Shared Framer Motion presets — used everywhere so motion feels consistent, not scattered
 export const motionPresets = {
   fadeUp: {
     initial: { opacity: 0, y: 24 },

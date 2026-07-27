@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   Stethoscope, Sparkles, Sun, Anchor, Grid2x2,
   Syringe, Smile, Baby, Siren, ArrowRight,
+  ScanLine, ShieldCheck, Heart, Zap,
 } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { services } from "@/lib/constants";
@@ -13,8 +14,8 @@ import { motionPresets } from "@/lib/design-tokens";
 const icons = {
   Stethoscope, Sparkles, Sun, Anchor, Grid2x2,
   Syringe, Smile, Baby, Siren,
+  ScanLine, ShieldCheck, Heart, Zap,
 };
-
 export function ServicesGrid() {
   return (
     <section id="services" className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">

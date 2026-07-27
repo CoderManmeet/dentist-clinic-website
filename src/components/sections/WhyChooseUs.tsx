@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap, Heart, ScanLine, Users, GraduationCap, CreditCard } from "lucide-react";
+import { Zap, Heart, ScanLine, Users, GraduationCap, CreditCard, Baby, Grid2x2, Sparkles, Star } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { whyChooseUs } from "@/lib/constants";
 import { motionPresets } from "@/lib/design-tokens";
 
-const icons = { Zap, Heart, ScanLine, Users, GraduationCap, CreditCard };
+// const icons = { Zap, Heart, ScanLine, Users, GraduationCap, CreditCard };
+const icons = { Zap, Heart, ScanLine, Users, GraduationCap, CreditCard, Baby, Grid2x2, Sparkles, Star };
 
 export function WhyChooseUs() {
   return (
