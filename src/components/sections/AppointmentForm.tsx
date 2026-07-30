@@ -138,7 +138,7 @@ export function AppointmentForm() {
         </div>
         <div>
           <Label>Preferred Time</Label>
-          <Select onValueChange={(v) => setValue("time", v)}>
+          <Select<string> onValueChange={(v) => { if (v) setValue("time", v); }}>
             <SelectTrigger className="rounded-input mt-1.5 w-full">
               <SelectValue placeholder="Select a time" />
             </SelectTrigger>
@@ -154,7 +154,7 @@ export function AppointmentForm() {
 
       <div>
         <Label>Treatment</Label>
-        <Select onValueChange={(v) => setValue("treatment", v)}>
+        <Select<string> onValueChange={(v) => { if (v) setValue("treatment", v); }}>
           <SelectTrigger className="rounded-input mt-1.5 w-full">
             <SelectValue placeholder="What do you need help with?" />
           </SelectTrigger>

@@ -22,7 +22,7 @@ export const motionPresets = {
     animate: { transition: { staggerChildren: 0.08 } },
   },
   breathe: {
-    animate: { scale: [1, 1.015, 1] },
+    animate: { scale: [1, 1.015, 1] as number[] },
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
 

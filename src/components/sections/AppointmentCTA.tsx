@@ -30,12 +30,12 @@ export function AppointmentCTA() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <Link href="/book-appointment">
               <motion.div
+                {...motionPresets.buttonTap}
                 ref={magnetic.ref as React.RefObject<HTMLDivElement>}
                 onMouseMove={magnetic.handleMouseMove}
                 onMouseLeave={magnetic.handleMouseLeave}
                 animate={{ x: magnetic.offset.x, y: magnetic.offset.y }}
                 transition={{ type: "spring", stiffness: 150, damping: 12 }}
-                {...motionPresets.buttonTap}
               >
                 <Button size="lg" className="w-full sm:w-auto rounded-button bg-white text-primary hover:bg-white/90 gap-2 h-14 px-8 text-base">
                   <Calendar className="size-5" /> Book Appointment
