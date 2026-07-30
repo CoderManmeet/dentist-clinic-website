@@ -13,6 +13,9 @@ export const dentistree: TenantConfig = {
     name: "DENTISTREE",
     phone: "+91 9876601854",
     phoneDisplay: "+91 9876601854",
+  
+    whatsapp: "919876601854", // your number, no + or spaces
+  
     email: "hello@dentistree.com",
     address: "H, no 1854, Himalaya Marg, Sector 22B, Sector 22, Chandigarh, 160022",
     hours: {

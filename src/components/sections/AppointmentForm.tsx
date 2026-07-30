@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
-import { treatmentOptions, timeSlots } from "@/lib/constants";
+import { clinic, treatmentOptions, timeSlots } from "@/lib/constants";
 
 const appointmentSchema = z.object({
   name: z.string().min(2, "Please enter your full name"),
@@ -28,7 +28,7 @@ const appointmentSchema = z.object({
 type AppointmentFormData = z.infer<typeof appointmentSchema>;
 
 export function AppointmentForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   const {
     register,
@@ -42,10 +42,27 @@ export function AppointmentForm() {
 
   const onSubmit = async (data: AppointmentFormData) => {
     setStatus("submitting");
-    // TODO: wire to your actual booking API / email endpoint
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    console.log("Appointment request:", data);
-    setStatus("success");
+    try {
+      const res = await fetch("/api/send-notification", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "appointment",
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          preferredDate: data.date,
+          preferredTime: data.time,
+          treatment: data.treatment,
+          message: data.message,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
@@ -71,6 +88,24 @@ export function AppointmentForm() {
           We'll call you shortly to confirm your appointment slot.
         </p>
       </motion.div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className="bg-surface border border-destructive/30 rounded-card p-10 text-center">
+        <h3 className="font-heading text-xl font-semibold text-foreground">Something went wrong</h3>
+        <p className="text-text-muted mt-2">
+          Please call us directly at{" "}
+          <a href={`tel:${clinic.phone}`} className="text-primary underline">
+            {clinic.phoneDisplay}
+          </a>{" "}
+          or try again.
+        </p>
+        <Button onClick={() => setStatus("idle")} variant="outline" className="mt-4 rounded-button">
+          Try Again
+        </Button>
+      </div>
     );
   }
 

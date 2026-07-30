@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { CalmCurveDivider } from "@/components/shared/CalmCurveDivider";
 import { clinic } from "@/lib/constants";
 import { motionPresets } from "@/lib/design-tokens";
+import { useMagneticHover } from "@/lib/hooks/useMagneticHover";
 
 export function AppointmentCTA() {
+  const magnetic = useMagneticHover(0.25);
+
   return (
     <>
       <CalmCurveDivider />
@@ -26,18 +29,29 @@ export function AppointmentCTA() {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <Link href="/book-appointment">
-              <Button size="lg" className="w-full sm:w-auto rounded-button bg-white text-primary hover:bg-white/90 gap-2 h-14 px-8 text-base">
-                <Calendar className="size-5" /> Book Appointment
-              </Button>
+              <motion.div
+                ref={magnetic.ref as React.RefObject<HTMLDivElement>}
+                onMouseMove={magnetic.handleMouseMove}
+                onMouseLeave={magnetic.handleMouseLeave}
+                animate={{ x: magnetic.offset.x, y: magnetic.offset.y }}
+                transition={{ type: "spring", stiffness: 150, damping: 12 }}
+                {...motionPresets.buttonTap}
+              >
+                <Button size="lg" className="w-full sm:w-auto rounded-button bg-white text-primary hover:bg-white/90 gap-2 h-14 px-8 text-base">
+                  <Calendar className="size-5" /> Book Appointment
+                </Button>
+              </motion.div>
             </Link>
             <a href={`tel:${clinic.phone}`}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto rounded-button gap-2 h-14 px-8 text-base border-white/30 text-white hover:bg-white/10 hover:text-white"
-              >
-                <Phone className="size-5" /> Call Now
-              </Button>
+              <motion.div {...motionPresets.buttonTap}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto rounded-button gap-2 h-14 px-8 text-base border-white/30 text-white hover:bg-white/10 hover:text-white"
+                >
+                  <Phone className="size-5" /> Call Now
+                </Button>
+              </motion.div>
             </a>
           </div>
         </motion.div>

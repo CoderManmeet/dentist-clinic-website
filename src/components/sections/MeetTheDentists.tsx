@@ -1,8 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { DoctorCard } from "@/components/shared/DoctorCard";
 import { dentists } from "@/lib/constants";
+import { motionPresets } from "@/lib/design-tokens";
 
 export function MeetTheDentists() {
   return (
@@ -16,7 +18,15 @@ export function MeetTheDentists() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {dentists.map((doc, i) => (
-            <DoctorCard key={doc.name} {...doc} delay={i * 0.1} />
+            <motion.div
+              key={doc.name}
+              {...motionPresets.fadeUp}
+              transition={{ ...motionPresets.fadeUp.transition, delay: i * 0.1 }}
+              whileHover={motionPresets.cardHover.whileHover}
+              className="rounded-card"
+            >
+              <DoctorCard {...doc} delay={i * 0.1} />
+            </motion.div>
           ))}
         </div>
       </div>

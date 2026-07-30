@@ -27,13 +27,13 @@ export function Footer() {
         <div>
           <p className="font-heading text-lg font-semibold">{clinic.name}</p>
           <p className="text-white/60 text-sm mt-3 leading-relaxed">
-            Calm, modern dental care in Ludhiana — built around your comfort, not just your teeth.
+            Calm, modern dental care in Chandigarh — built around your comfort, not just your teeth.
           </p>
           <div className="flex gap-3 mt-5">
             <a href="#" aria-label="Instagram" className="size-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
               <InstagramIcon />
             </a>
-            <a href="#" aria-label="Facebook" className="size-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+            <a href="https://www.facebook.com/Dentistree22/" aria-label="Facebook" className="size-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
               <FacebookIcon />
             </a>
           </div>

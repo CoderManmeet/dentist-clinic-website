@@ -25,4 +25,24 @@ export const motionPresets = {
     animate: { scale: [1, 1.015, 1] },
     transition: { duration: 4, repeat: Infinity, ease: "easeInOut" },
   },
+
+  // NEW — card hover: lift + subtle tilt, used on ServicesGrid, WhyChooseUs, DoctorCard
+  cardHover: {
+    whileHover: { y: -6, scale: 1.02 },
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  },
+  // NEW — scroll-linked fade+scale for gallery images
+  scaleIn: {
+    initial: { opacity: 0, scale: 0.92 },
+    whileInView: { opacity: 1, scale: 1 },
+    viewport: { once: true, margin: "-60px" },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+  // NEW — CTA button press feedback
+  buttonTap: {
+    whileHover: { scale: 1.04 },
+    whileTap: { scale: 0.97 },
+    transition: { duration: 0.2, ease: "easeOut" },
+  },
+  
 } as const;

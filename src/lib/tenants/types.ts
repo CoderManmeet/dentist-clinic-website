@@ -64,6 +64,7 @@ export interface TenantConfig {
     yearsExperience: number;
     patientsTreated: string;
     emergencyAvailable: boolean;
+    whatsapp: string; // full number with country code, no + or spaces, e.g. "919876601854"
   };
 
   hero: {

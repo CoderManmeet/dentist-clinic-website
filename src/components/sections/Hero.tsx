@@ -28,7 +28,7 @@ export function Hero() {
           </h1>
 
           <p className="text-text-muted text-lg mt-6 max-w-md leading-relaxed">
-            Modern, pain-free dental care in Ludhiana — from routine cleanings to complex
+            Modern, pain-free dental care in Chandigarh — from routine cleanings to complex
             implants, delivered with genuine warmth.
           </p>
 

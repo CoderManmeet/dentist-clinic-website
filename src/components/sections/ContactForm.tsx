@@ -21,17 +21,31 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("submitting");
-    // TODO: wire to your actual contact API / email endpoint
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log("Contact request:", data);
-    setStatus("success");
+    try {
+      const res = await fetch("/api/send-notification", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact",
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          message: data.message,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   if (status === "success") {
@@ -46,6 +60,18 @@ export function ContactForm() {
         <h3 className="font-heading text-xl font-semibold text-foreground mt-4">Message sent</h3>
         <p className="text-text-muted mt-2">We'll get back to you within a few hours.</p>
       </motion.div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className="bg-surface border border-destructive/30 rounded-card p-10 text-center">
+        <h3 className="font-heading text-xl font-semibold text-foreground">Something went wrong</h3>
+        <p className="text-text-muted mt-2">Please try again or call us directly.</p>
+        <Button onClick={() => setStatus("idle")} variant="outline" className="mt-4 rounded-button">
+          Try Again
+        </Button>
+      </div>
     );
   }
 
